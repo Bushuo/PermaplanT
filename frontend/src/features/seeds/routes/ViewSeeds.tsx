@@ -1,22 +1,16 @@
+import { findAllSeeds } from '../api/findAllSeeds';
+import SimpleModal from '@/components/Modals/SimpleModal';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
-import useFindSeedsStore from '../store/FindSeedsStore';
 
 export const ViewSeeds = () => {
-  const seeds = useFindSeedsStore((state) => state.seeds);
-
-  useEffect(() => {
-    const _findAllSeeds = async () => {
-      await useFindSeedsStore.getState().findAllSeeds();
-    };
-    _findAllSeeds();
-  }, []);
+  const { data, isError, refetch } = useQuery({ queryKey: ['seeds'], queryFn: findAllSeeds });
 
   return (
     <div>
       <h1>Seeds</h1>
       <ul>
-        {seeds.map((seed) => (
+        {data?.map((seed) => (
           <li key={seed.id}>{seed.name}</li>
         ))}
       </ul>
@@ -28,6 +22,14 @@ export const ViewSeeds = () => {
           Neuer Eintrag
         </Link>
       </div>
+
+      <SimpleModal
+        title="Error"
+        body="Seeds could not be loaded"
+        show={isError}
+        onSubmit={refetch}
+        submitBtnTitle="Ok"
+      />
     </div>
   );
 };

@@ -10,3 +10,5 @@ export const findAllPlants = async (): Promise<PlantsDto[]> => {
     throw error as Error;
   }
 };
+
+export const findAllPlantsQueryKey = 'plants';

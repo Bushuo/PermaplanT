@@ -11,6 +11,7 @@
     "generate-api-types": "cd ../backend && typeshare ./ --lang=typescript --output-file=../frontend/src/bindings/definitions.ts"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.27.0",
     "axios": "^1.2.3",
     "framer-motion": "^8.5.2",
     "is-mobile": "^3.1.1",

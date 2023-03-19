@@ -4,7 +4,7 @@ import TransparentBackground from '@/components/TransparentBackground';
 interface SimpleModalProps {
   title: string;
   body: string;
-  setShow: (show: boolean) => void;
+  setShow?: (show: boolean) => void;
   show: boolean;
   cancelBtnTitle?: string;
   submitBtnTitle: string;
@@ -26,7 +26,7 @@ export default function SimpleModal({
     <>
       <TransparentBackground
         onClick={() => {
-          setShow(false);
+          setShow?.(false);
         }}
         show={show}
       />

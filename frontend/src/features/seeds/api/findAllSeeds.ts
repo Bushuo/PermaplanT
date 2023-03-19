@@ -11,3 +11,5 @@ export const findAllSeeds = async (): Promise<SeedDto[]> => {
     throw error as Error;
   }
 };
+
+export const queryKey = 'seeds';
